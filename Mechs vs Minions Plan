@@ -1,0 +1,88 @@
+RED
+Blaze
+Fire Spit
+Fuel Tank
+
+BLUE
+Ripsaw
+Scythe
+Skewer
+
+GREEN
+Memory Core
+AI shot
+Omnistomp
+
+YELLOW
+Cyclotron
+Zap
+speed
+
+What is linked to each player ID
+	- Their command line
+	
+
+The Command Line (struct)
+	6 slots, all start as 0, but eventually become filled with a CARD struct
+	Each card is then stored as 4 ints
+		1 for isDamaged (binary)
+		1 for color (RGBY as 0-3)
+		1 for the card in the color (movement = 1, attack = 2, turn = 3)
+		1 for the tier (int 1-3)
+		
+Player(struct)
+	Player ID (int, 1-4)
+	Orientation(int Left Right Up Down, but define L R U D as 0 1 2 3 I suppose)
+	Location X (int 0-inf)
+	Location Y (int 0-inf)
+
+
+TURN ORDER
+	Draw_Card
+
+
+Deck (composed of an array of ints)
+	Empty cards represented as a stored 0
+	Live deck
+		There should be some kind of int deckPos which tells where in the deck we are
+		Start off with all the cards in the array, randomize the positions of elements in the array
+	Turn start:
+		Check for memory core, set int bonusDraw to the appropriate number
+		Draw Cards
+			cardsDrawn = 0
+			If cardsDrawn < 5, Display the first 5+bonusDraw cards of the liveDeck array
+				Players choose
+				User inputs a number 1 to (5+bonusDraw) to select their card
+					The selected card becomes 0
+					cardsDrawn +=1
+					next player turn
+		increment deckPos by (5+bonusDraw)
+		switch to Player_Choose_Card_Use phase
+
+Player_Choose_Card_Use
+	Increment through each player
+		Display the player's command line
+		Insert into Command Line or Scrap?
+			Command Line
+				What slot?
+			Scrap
+				What color? 
+					Repair
+						Which slot?
+					Reorder
+						Which tiles?
+					Discard?
+						Are you sure?
+
+Tile Generation
+		
+	
+THINGS TO ANSWER BEFORE STARTING
+-How are tiles going to be generated?
+-How are cards stored? 
+-How do attacks work?
+-How do card attacks work?
+-How do things move, both players and minions/
+
+ADDRESSED ISSUES
+-How is the deck going to work?
